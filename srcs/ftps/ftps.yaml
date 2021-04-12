@@ -6,30 +6,39 @@
 #    By: mazoukni <mazoukni@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/12 16:42:16 by mazoukni          #+#    #+#              #
-#    Updated: 2021/04/12 17:05:47 by mazoukni         ###   ########.fr        #
+#    Updated: 2021/04/12 17:07:37 by mazoukni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+
 apiVersion: apps/v1
-kind: Deployment
+kind: Service
 metadata:
   name: ftps-alpine
+  labels:
+    run: ftps-alpine
 spec:
+  type: NodePort
+  ports:
+  - port: 21
+    targetPort: 21
+    nodePort: 30025
+    protocol: TCP
+    name: ftp21
+  - port: 20
+    targetPort: 20
+    protocol: TCP
+    nodePort: 30026
+    name: ftp20
+  - port: 30020
+    targetPort: 30020
+    nodePort: 30020
+    protocol: TCP
+    name: ftp30020
+  - port: 30021
+    targetPort: 30021
+    nodePort: 30021
+    protocol: TCP
+    name: ftp30021
   selector:
-    matchLabels:
-      run: ftps-alpine
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        run: ftps-alpine
-    spec:
-      containers:
-      - name: ftps-alpine
-        image: test_alpine
-        imagePullPolicy: Never
-        ports:
-        - containerPort: 21
-        - containerPort: 20
-        - containerPort: 30020
-        - containerPort: 30021
+    run: ftps-alpine
