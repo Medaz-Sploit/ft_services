@@ -1,0 +1,35 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    ftps.yaml                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mazoukni <mazoukni@student.1337.ma>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/04/12 16:42:16 by mazoukni          #+#    #+#              #
+#    Updated: 2021/04/12 17:05:47 by mazoukni         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ftps-alpine
+spec:
+  selector:
+    matchLabels:
+      run: ftps-alpine
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: ftps-alpine
+    spec:
+      containers:
+      - name: ftps-alpine
+        image: test_alpine
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 21
+        - containerPort: 20
+        - containerPort: 30020
+        - containerPort: 30021
