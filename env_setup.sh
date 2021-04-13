@@ -47,10 +47,12 @@ brew update
 brew install docker docker-machine
 mkdir $DOCKER_GOINFRE
 ls -s $DOCKER_GOINFRE $DOCKER_HOME
+source ~/.zshrc
 docker-machine create --driver virtualbox default
 docker-machine start
 docker-machine env default
 eval "$(docker-machine env default)"
+source ~/.zshrc
 brew install kubectl
 if [ -d "$HOME/.minikube" ]
 then
@@ -58,3 +60,4 @@ then
     rm -rf $HOME/.minikube
 fi
 minikube start --vm-driver=virtualbox
+source ~/.zshrc
