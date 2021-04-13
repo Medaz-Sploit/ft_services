@@ -16,7 +16,7 @@ DOCKER_HOME=$HOME/.docker
 DOCKER_GOINFRE=/goinfre/$1/.docker
 HOMEBREW_HOME=/goinfre/$1/homebrew
 
-if [ ! -d "~/.zshrc" ]
+if [ ! -d "/Users/mazoukni/.oh-my-zsh" ]
 then
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
@@ -28,8 +28,9 @@ echo "plugins=(git)"  >> ~/.zshrc
 echo "source $ZSH/oh-my-zsh.sh" >> ~/.zshrc
 source ~/.zshrc
 
-if [[ -d "/goinfre/$1/.docker" && -d "/goinfre/$1/homebrew" ]]
+if [[ -d $DOCKER_GOINFRE || -d $HOMEBREW_HOME ]]
 then
+    echo "-------------- Deleting Old Cashes ---------------"
     rm -rf $DOCKER_GOINFRE
     rm -rf $HOMEBREW_HOME
 fi
@@ -53,6 +54,7 @@ eval "$(docker-machine env default)"
 brew install kubectl
 if [ -d "$HOME/.minikube" ]
 then
+    echo "--------- Deleting Minikube Old Directory -----------"
     rm -rf $HOME/.minikube
 fi
 minikube start --vm-driver=virtualbox
