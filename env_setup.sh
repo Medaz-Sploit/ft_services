@@ -6,7 +6,7 @@
 #    By: mazoukni <mazoukni@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/13 13:45:20 by mazoukni          #+#    #+#              #
-#    Updated: 2021/04/13 15:50:24 by mazoukni         ###   ########.fr        #
+#    Updated: 2021/04/13 16:08:51 by mazoukni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,11 @@ DOCKER_HOME=$HOME/.docker
 DOCKER_GOINFRE=/goinfre/$1/.docker
 HOMEBREW_HOME=/goinfre/$1/homebrew
 
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+if [ ! -d ~/.zshrc ]
+then
+	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
 echo -n "" > ~/.zshrc
 echo "export ZSH=\"/Users/$1/.oh-my-zsh\"" >> ~/.zshrc
 echo "ZSH_THEME=\"robbyrussell\"" >> ~/.zshrc
