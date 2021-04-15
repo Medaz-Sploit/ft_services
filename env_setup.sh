@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    setup.sh                                           :+:      :+:    :+:    #
+#    env_setup.sh                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mazoukni <mazoukni@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/13 13:45:20 by mazoukni          #+#    #+#              #
-#    Updated: 2021/04/13 16:16:06 by mazoukni         ###   ########.fr        #
+#    Updated: 2021/04/15 15:28:05 by mazoukni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ DOCKER_HOME=$HOME/.docker
 DOCKER_GOINFRE=/goinfre/$1/.docker
 HOMEBREW_HOME=/goinfre/$1/homebrew
 
-if [ ! -d "/Users/mazoukni/.oh-my-zsh" ]
+if [ ! -d "/Users/$1/.oh-my-zsh" ]
 then
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
